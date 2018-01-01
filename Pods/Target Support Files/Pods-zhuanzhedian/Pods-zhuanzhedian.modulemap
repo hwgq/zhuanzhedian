@@ -1,0 +1,6 @@
+framework module Pods_zhuanzhedian {
+  umbrella header "Pods-zhuanzhedian-umbrella.h"
+
+  export *
+  module * { export * }
+}

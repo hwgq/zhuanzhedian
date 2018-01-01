@@ -1,0 +1,20 @@
+//
+//  InternetRequest.pch
+//  zhuanzhedian
+//
+//  Created by Gaara on 15/11/26.
+//  Copyright © 2015年 Gaara. All rights reserved.
+//
+
+#ifndef InternetRequest_pch
+#define InternetRequest_pch
+
+
+#define TIMESTAMP @"http://api.zzd.hidna.cn/v1/comm/timestamp"
+#define ipd api.zzd.hidna.cn;
+// 分享
+#define SHARE_URL @"https://api.zzd.hidna.cn/v1/"
+
+
+
+#endif
