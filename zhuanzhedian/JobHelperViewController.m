@@ -8,7 +8,6 @@
 
 #import "JobHelperViewController.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 #import "JobHelperTableViewCell.h"
 #import "FontTool.h"

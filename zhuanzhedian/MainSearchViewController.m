@@ -10,7 +10,6 @@
 #import "FontTool.h"
 #import "UIColor+AddColor.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 #import "NewZZDPeopleCell.h"
 #import "NewZZDBossCell.h"

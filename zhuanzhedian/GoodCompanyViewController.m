@@ -12,7 +12,6 @@
 #import "GoodCompanyDetailViewController.h"
 #import <Wilddog.h>
 #import "FontTool.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 #import "UIImageView+WebCache.h"
 #import "UIColor+AddColor.h"

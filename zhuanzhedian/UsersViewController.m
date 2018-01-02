@@ -16,7 +16,6 @@
 #import "JudgeLocalUnreadMessage.h"
 #import "ServiceViewController.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "ZZDLoginViewController.h"
 #import "FMDBMessages.h"
 #import "MyMessage.h"

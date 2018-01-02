@@ -8,7 +8,6 @@
 
 #import "AFNInternetTool.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 #import "AVOSCloudIM/AVOSCloudIM.h"
 #import "AVOSCloud/AVOSCloud.h"

@@ -25,7 +25,6 @@
 #import <UMMobClick/MobClick.h>
 #import "JobHelperDetailViewController.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 @interface ServiceViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong)UITableView *serviceTable;

@@ -11,7 +11,6 @@
 #import "UIColor+AddColor.h"
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "ZZDAlertView.h"
 #import "FontTool.h"
 

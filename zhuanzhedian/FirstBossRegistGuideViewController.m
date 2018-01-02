@@ -13,7 +13,6 @@
 #import "UIColor+AddColor.h"
 #import "GaoDeMapViewController.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 #import "BossSummaryFirstView.h"
 @interface FirstBossRegistGuideViewController ()<UIScrollViewDelegate,ZZDRegistGuideViewDelegate,GaoDeMapVCDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,BossSummaryFirstDelegate>

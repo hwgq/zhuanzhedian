@@ -6027,6 +6027,8 @@
 					"$(PROJECT_DIR)/Support/Optional",
 					"$(PROJECT_DIR)/Support/Required",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/zhuanzhedian/InternetRequest.pch";
 				INFOPLIST_FILE = zhuanzhedian/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -6065,6 +6067,8 @@
 					"$(PROJECT_DIR)/Support/Optional",
 					"$(PROJECT_DIR)/Support/Required",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/zhuanzhedian/InternetRequest.pch";
 				INFOPLIST_FILE = zhuanzhedian/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

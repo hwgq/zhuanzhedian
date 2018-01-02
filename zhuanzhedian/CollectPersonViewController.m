@@ -14,7 +14,6 @@
 #import "WorkResumeDetailViewController.h"
 #import "UIColor+AddColor.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "MBProgressHUD.h"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"

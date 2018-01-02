@@ -23,7 +23,6 @@
 #import "MBProgressHUD.h"
 //#import <AVOSCloudIM/AVOSCloudIM.h>
 #import "AVOSCloud/AVOSCloud.h"
-#import "InternetRequest.pch"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"
 #import "AboutUsViewController.h"

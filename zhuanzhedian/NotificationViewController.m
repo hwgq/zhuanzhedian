@@ -13,7 +13,6 @@
 #import "WorkResumeDetailViewController.h"
 #import "AFNetworking.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "ZZDLoginViewController.h"
 #import "AVOSCloud/AVOSCloud.h"
 #import "AppDelegate.h"

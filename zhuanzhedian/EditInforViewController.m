@@ -13,7 +13,6 @@
 #import "JobTagViewController.h"
 #import "JobPlaceViewController.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 #import "FontTool.h"
 #import "JobSelectTypeViewController.h"

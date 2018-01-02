@@ -17,7 +17,6 @@
 #import "WorkResumeDetailViewController.h"
 #import "AppDelegate.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "MBProgressHUD.h"
 #import "ZZDLoginViewController.h"
 #import "CreateNewJobViewController.h"
@@ -1913,9 +1912,7 @@
             workDetail.jdId = self.jdId;
             workDetail.hidesBottomBarWhenPushed = YES;
             if (self.jdId != nil) {
-                
-            
-            [self.navigationController pushViewController:workDetail animated:YES];
+                [self.navigationController pushViewController:workDetail animated:YES];
             }
             break;
         case 7://人id

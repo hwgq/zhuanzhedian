@@ -9,7 +9,6 @@
 #import "BossMessageViewController.h"
 #import "AFNetworking.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "BossMessageTableViewCell.h"
 #import "UILableFitText.h"
 #import "UIColor+flat.h"

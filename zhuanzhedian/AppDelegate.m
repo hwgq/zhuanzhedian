@@ -20,7 +20,6 @@
 #import "JudgeLocalUnreadMessage.h"
 #import "JudgeCreateCheatWindow.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "ChangeIdentityViewController.h"
 #import "GuidePageViewController.h"
 #import "FMDB.h"

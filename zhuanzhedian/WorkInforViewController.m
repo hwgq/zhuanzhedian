@@ -25,7 +25,6 @@
 //#import <AVOSCloudIM/AVOSCloudIM.h>
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"
-#import "InternetRequest.pch"
 #import "FMDBMessages.h"
 #import "PeopleCheatWithMeController.h"
 #import "AboutUsViewController.h"

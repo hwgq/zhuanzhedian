@@ -14,7 +14,6 @@
 #import "JobPlaceViewController.h"
 #import "AFNetworking.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "HideCompanyTableViewCell.h"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"

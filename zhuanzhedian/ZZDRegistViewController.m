@@ -13,7 +13,6 @@
 #import "MD5NSString.h"
 #import "ChangeKeyViewController.h"
 #import "ChangeIdentityViewController.h"
-#import "InternetRequest.pch"
 #import "AVOSCloud/AVOSCloud.h"
 #import "FontTool.h"
 #import "UIColor+AddColor.h"

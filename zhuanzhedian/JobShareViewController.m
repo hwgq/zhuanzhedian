@@ -16,7 +16,6 @@
 #import "PostOfficeViewController.h"
 #import "AVOSCloud/AVOSCloud.h"
 #import "ZZDAlertView.h"
-#import "InternetRequest.pch"
 
 
 @interface JobShareViewController ()<WXApiDelegate>

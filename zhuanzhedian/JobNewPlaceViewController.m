@@ -10,7 +10,6 @@
 #import "AFNetworking.h"
 #import "UIColor+AddColor.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"
 #import "JobNewPlaceTableViewCell.h"

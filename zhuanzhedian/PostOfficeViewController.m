@@ -13,7 +13,6 @@
 #import "CollectPersonTableViewCell.h"
 #import "JobDetailViewController.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "MBProgressHUD.h"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"

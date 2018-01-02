@@ -24,7 +24,8 @@
 #import "UIColor+AddColor.h"
 #import "ScanViewController.h"
 #import "JobHelperViewController.h"
-typedef enum kSliderTag{
+
+typedef enum kSliderTag {
     kHeight_Tag             = 11,
     kSpeed_Tag              = 12,
     kWave_Tag               = 13,
@@ -32,92 +33,65 @@ typedef enum kSliderTag{
     kWaveMin_Tag            = 17,
     kWaveMax_Tag            = 18,
     kWaveW_Tag              = 19,
-    
-}SliderTag;
+} SliderTag;
 
-#define showValueLableTag   10
-
+#define showValueLableTag 10
 #define waveDelta 0.01
-
-//  当前屏幕宽度
-#define SCREEN_WIDTH    [UIScreen mainScreen].bounds.size.width
-//  当前屏幕高度
-#define SCREEN_HEIGHT   [UIScreen mainScreen].bounds.size.height
-//  tabbar高度
-#define TABBAR_HEIGHT   self.tabBarController.tabBar.frame.size.height
-//  状态栏高度
-#define STATUS_HEIGHT   [[UIApplication sharedApplication] statusBarFrame].size.height
-//  Navigationbar高度
-#define NAVIGATIONBAR_HEIGHT self.navigationController.navigationBar.frame.size.height
 //  判断系统版本
 #define iOS8Over [[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0
-@interface MineMainViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong)UITableView *mineTableView;
-@property (nonatomic, strong)VWWWaterView *waterView;
-@property (nonatomic, strong)UIImageView *headerImg;
-@property (nonatomic, strong)UILabel *userNameLabel;
+
+
+@interface MineMainViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *mineTableView;
+@property (nonatomic, strong) VWWWaterView *waterView;
+@property (nonatomic, strong) UIImageView *headerImg;
+@property (nonatomic, strong) UILabel *userNameLabel;
 
 @end
+
 @implementation MineMainViewController
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
+
+- (void)getLocalUserData {
+    self.mainDic = [USERDEFAULTS objectForKey:@"user"];
 }
-- (void)getLocalUserData
-{
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    self.mainDic = [user objectForKey:@"user"];
-    NSLog(@"%@",[user objectForKey:@"rs"]);
-    
-    
-    
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"TabBar_bg"]forBarMetrics:UIBarMetricsDefault];
-    UIImageView *statusBarView = [[UIImageView alloc]initWithFrame:CGRectMake(0, -20, self.view.frame.size.width, 20)];
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"TabBar_bg"] forBarMetrics:UIBarMetricsDefault];
+    UIImageView *statusBarView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
     statusBarView.image = [UIImage imageNamed:@"StatusBar_bg"];
     [self.navigationController.navigationBar addSubview:statusBarView];
 }
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    self.mainDic = [user objectForKey:@"user"];
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.mainDic = [USERDEFAULTS objectForKey:@"user"];
     if ([self.mainDic objectForKey:@"avatar"]) {
-        
         [self.headerImg sd_setImageWithURL:[NSURL URLWithString:[self.mainDic objectForKey:@"avatar"]]];
     }
     if ([self.mainDic objectForKey:@"name"] && [self.mainDic objectForKey:@"sex"] && [self.mainDic objectForKey:@"highest_edu"]) {
-        
-        self.userNameLabel.text = [NSString stringWithFormat:@"%@ | %@ | %@",[self.mainDic objectForKey:@"name"],[self.mainDic objectForKey:@"sex"],[self.mainDic objectForKey:@"highest_edu"]];
+        self.userNameLabel.text = [NSString stringWithFormat:@"%@ | %@ | %@", [self.mainDic objectForKey:@"name"], [self.mainDic objectForKey:@"sex"], [self.mainDic objectForKey:@"highest_edu"]];
     }
 }
-- (void)manageMyRS
-{
-    CompleteRSViewController *rsVC = [[CompleteRSViewController alloc]init];
-    FirstRegistGuideController *firstRegist = [[FirstRegistGuideController alloc]init];
-    if ([[self.mainDic objectForKey:@"resume_id"]integerValue] > 0) {
+
+- (void)manageMyRS {
+    CompleteRSViewController *rsVC = [[CompleteRSViewController alloc] init];
+    FirstRegistGuideController *firstRegist = [[FirstRegistGuideController alloc] init];
+    if ([[self.mainDic objectForKey:@"resume_id"] integerValue] > 0) {
         //                    resumeDetail.hidesBottomBarWhenPushed = YES;
         //                    resumeDetail.a = 10;
         //                    // 从微简历push到英雄出处那页
         //                    [self.navigationController pushViewController:resumeDetail animated:YES];
         rsVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:rsVC animated:YES];
-    }else{
+    } else {
         firstRegist.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController: firstRegist animated:YES];}
 }
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self getLocalUserData];
-//    self.navigationController.navigationBar.hidden = YES;
     self.view.backgroundColor = [UIColor colorFromHexCode:@"fbfbf8"] ;
     [self createMineTable];
 //    self.waterView = [[VWWWaterView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200 + 20)color:[UIColor whiteColor]];
@@ -130,21 +104,19 @@ typedef enum kSliderTag{
     self.headerImg.layer.masksToBounds = YES;
     self.headerImg.layer.cornerRadius = 40;
     self.headerImg.userInteractionEnabled = YES;
-    [self.headerImg addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(manageMyRS)]];
+    [self.headerImg addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(manageMyRS)]];
     self.headerImg.layer.borderColor = [UIColor whiteColor].CGColor;
     self.headerImg.layer.borderWidth = 2;
     [self.view addSubview:self.headerImg];
     
-    
     self.userNameLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width - 200) / 2, 110, 200, 30)];
     self.userNameLabel.textColor = [UIColor colorFromHexCode:@"#666666"];
-    self.userNameLabel.text = [NSString stringWithFormat:@"%@ | %@ | %@",[self.mainDic objectForKey:@"name"],[self.mainDic objectForKey:@"sex"],[self.mainDic objectForKey:@"highest_edu"]];
+    self.userNameLabel.text = [NSString stringWithFormat:@"%@ | %@ | %@", [self.mainDic objectForKey:@"name"], [self.mainDic objectForKey:@"sex"], [self.mainDic objectForKey:@"highest_edu"]];
     self.userNameLabel.font = [[FontTool customFontArrayWithSize:14]objectAtIndex:1];
     self.userNameLabel.textAlignment = 1;
     [self.view addSubview:self.userNameLabel];
     
-    
-    UIView  *lineUp = [[UIView alloc]initWithFrame:CGRectMake(0, 160, [UIScreen mainScreen].bounds.size.width, 1)];
+    UIView *lineUp = [[UIView alloc]initWithFrame:CGRectMake(0, 160, [UIScreen mainScreen].bounds.size.width, 1)];
     lineUp.backgroundColor = [UIColor colorFromHexCode:@"#EEEEEE"];
     [self.view addSubview:lineUp];
     
@@ -154,12 +126,12 @@ typedef enum kSliderTag{
     
     //初始化波浪参数
 //    [self initWaveValue];
-    if ([[[[NSUserDefaults standardUserDefaults]objectForKey:@"user"]objectForKey:@"is_fill_user"]isEqualToString:@"0"]) {
+    if ([[[USERDEFAULTS objectForKey:@"user"] objectForKey:@"is_fill_user"] isEqualToString:@"0"]) {
 //        WorkUserInforViewController *workInfor = [[WorkUserInforViewController alloc]init];
 //        workInfor.hidesBottomBarWhenPushed = YES;
 //        workInfor.isFirst = @"YES";
 //        [self.navigationController pushViewController:workInfor animated:YES];
-        FirstRegistGuideController *firstGuide = [[FirstRegistGuideController alloc]init];
+        FirstRegistGuideController *firstGuide = [[FirstRegistGuideController alloc] init];
         firstGuide.hidesBottomBarWhenPushed = YES;
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         UITabBarController *tabBar = (UITabBarController *)app.window.rootViewController;
@@ -168,22 +140,16 @@ typedef enum kSliderTag{
     }
 
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
-    
     titleLabel.text = @"我的";
-    
-    titleLabel.textAlignment = 1;
-    
-    titleLabel.font = [[FontTool customFontArrayWithSize:16]objectAtIndex:1];
-    
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font = [[FontTool customFontArrayWithSize:16] objectAtIndex:1];
     titleLabel.textColor = [UIColor whiteColor];
-    
     self.navigationItem.titleView = titleLabel;
     
-    UIImageView *setImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 9, 22, 19)];
+    UIImageView *setImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 9, 22, 19)];
     setImg.image = [UIImage imageNamed:@"icon_set.png"];
     setImg.userInteractionEnabled = YES;
     [setImg addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goToSetting)]];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:setImg];
     
 }
@@ -334,9 +300,8 @@ typedef enum kSliderTag{
     return;
 }
 
-- (void)createMineTable
-{
-    self.mineTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 161, self.view.frame.size.width, self.view.frame.size.height - 161) style:UITableViewStylePlain];
+- (void)createMineTable {
+    self.mineTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 161, SCREEN_WIDTH, SCREEN_HEIGHT - 161) style:UITableViewStylePlain];
     self.mineTableView.delegate = self;
     self.mineTableView.dataSource = self;
     self.mineTableView.rowHeight = 50;
@@ -345,33 +310,18 @@ typedef enum kSliderTag{
     self.mineTableView.layer.borderWidth = 1;
     self.mineTableView.backgroundColor = [UIColor colorFromHexCode:@"fbfbf8"];
     self.mineTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.mineTableView.sectionHeaderHeight = 0.001;
-//    self.mineTableView.sectionFooterHeight = 0;
     [self.view addSubview:self.mineTableView];
-    
-    
-    
-    
-    
-    
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return 4;
-    
-    }else{
-        return 0;
-        
-    }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
 }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellId = @"cell";
     ZZDMineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
@@ -387,21 +337,13 @@ typedef enum kSliderTag{
                 [cell setImage:@"personal_icon_collect.png" title:@"收藏的岗位"];
                 break;
             case 2:
-                [cell setImage:@"interview_icon.png" title:@"我的面试通"];
+                [cell setImage:@"position" title:@"附件简历"];
                 break;
             case 3:
+                [cell setImage:@"interview_icon.png" title:@"我的面试通"];
+                break;
+            case 4:
                 [cell setImage:nil title:@"功能教程与攻略"];
-                break;
-            default:
-                break;
-        }
-    }else if(indexPath.section == 1){
-        switch (indexPath.row) {
-            case 0:
-                [cell setImage:nil title:@"功能教程与攻略"];
-                break;
-            case 1:
-                [cell setImage:@"图层-9.png" title:@"设置"];
                 break;
             default:
                 break;
@@ -409,13 +351,12 @@ typedef enum kSliderTag{
     }
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.000001;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     WorkResumeViewController *resume = [[WorkResumeViewController alloc]init];
     WorkResumeDetailViewController *resumeDetail  = [[WorkResumeDetailViewController alloc]init];
     CollectPersonViewController *collect = [[CollectPersonViewController alloc]init];
@@ -445,44 +386,27 @@ typedef enum kSliderTag{
                 [self.navigationController pushViewController:collect animated:YES];
                 break;
             case 2:
+                
+                break;
+            case 3:
                 jobHelperVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:jobHelperVC animated:YES];
                 break;
-            case 3:
+            case 4:
                 aboutUs.url  = @"http://api.zzd.hidna.cn/v1/conf/help";
                 aboutUs.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:aboutUs animated:YES];
-                
-                break;
-            default:
-                break;
-        }
-    }else if(indexPath.section == 1){
-        self.navigationController.navigationBar.hidden = NO;
-        switch (indexPath.row) {
-            case 0:
-               
-                
-                        aboutUs.url  = @"http://api.zzd.hidna.cn/v1/conf/help";
-                        aboutUs.hidesBottomBarWhenPushed = YES;
-                        [self.navigationController pushViewController:aboutUs animated:YES];
-
-                break;
-            case 1:
-                
-                mySetting.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:mySetting animated:YES];
                 break;
             default:
                 break;
         }
     }
-
 }
-- (void)goToSetting
-{
+
+- (void)goToSetting {
     MySettingViewController *mySetting = [[MySettingViewController alloc]init];
     mySetting.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:mySetting animated:YES];
 }
+
 @end

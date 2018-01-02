@@ -10,7 +10,6 @@
 #import "MD5NSString.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKUI/ShareSDK+SSUI.h>
-#import "InternetRequest.pch"
 #import "AFNetworking.h"
 #import "MBProgressHUD.h"
 #import "AVOSCloud/AVOSCloud.h"

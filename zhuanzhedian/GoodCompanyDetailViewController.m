@@ -13,7 +13,6 @@
 #import "NewZZDBossCell.h"
 #import "UIImageView+WebCache.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 #import "JobDetailViewController.h"
 #import "GoodCompanyJobsViewController.h"

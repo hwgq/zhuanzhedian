@@ -17,7 +17,6 @@
 #import "JobRequireViewController.h"
 #import "EduAndWorkViewController.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "JobTagViewController.h"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"

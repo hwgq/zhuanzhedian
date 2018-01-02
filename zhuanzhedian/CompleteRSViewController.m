@@ -14,7 +14,6 @@
 #import "JobRequireViewController.h"
 #import "AFNetworking.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "UIImageView+WebCache.h"
 #import "WorkAndEduListController.h"
 #import "AVOSCloud/AVOSCloud.h"

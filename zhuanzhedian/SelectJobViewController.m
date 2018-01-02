@@ -12,7 +12,6 @@
 #import "CheatViewController.h"
 #import "MBProgressHUD.h"
 #import "AFNetworking.h"
-#import "InternetRequest.pch"
 #import "MD5NSString.h"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"

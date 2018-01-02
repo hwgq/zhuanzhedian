@@ -12,7 +12,6 @@
 #import "JobPlaceTableViewCell.h"
 #import "JobCityTableViewCell.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"
 #import "JobNameViewController.h"

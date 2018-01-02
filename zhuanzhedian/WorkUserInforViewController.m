@@ -15,7 +15,6 @@
 #import "UIColor+AddColor.h"
 #import "UIImageView+WebCache.h"
 #import "MD5NSString.h"
-#import "InternetRequest.pch"
 #import "ZZDLoginViewController.h"
 #import "AppDelegate.h"
 #import "AVOSCloud/AVOSCloud.h"

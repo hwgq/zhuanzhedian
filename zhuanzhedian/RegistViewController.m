@@ -13,7 +13,6 @@
 #import "MBProgressHUD.h"
 #import "AVOSCloud/AVOSCloud.h"
 #import "ChangeIdentityViewController.h"
-#import "InternetRequest.pch"
 #import "RCAnimatedImagesView.h"
 #import "ZZDAlertView.h"
 @interface RegistViewController ()<MBProgressHUDDelegate,RCAnimatedImagesViewDelegate,UITextFieldDelegate>

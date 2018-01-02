@@ -14,7 +14,6 @@
 #import "MD5NSString.h"
 #import "AVOSCloud/AVOSCloud.h"
 #import "AppDelegate.h"
-#import "InternetRequest.pch"
 #import "ChangeIdentityViewController.h"
 #import "ChangeKeyViewController.h"
 #import "UIColor+AddColor.h"

@@ -14,7 +14,6 @@
 #import "UILableFitText.h"
 #import "MD5NSString.h"
 #import "ZZDAlertView.h"
-#import "InternetRequest.pch"
 #import "SelectJobViewController.h"
 #import "FontTool.h"
 #import "CheatViewController.h"
@@ -22,6 +21,10 @@
 #import "JobHelperViewController.h"
 #import "CreateNewJobViewController.h"
 #import "ScanBeforeViewController.h"
+#import "WXApi.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
+#import <UMMobClick/MobClick.h>
 #import "AppDelegate.h"
 @interface NewZZDPeopleViewController ()
 
@@ -119,8 +122,67 @@
     [imageBack addGestureRecognizer:tap];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:imageBack];
+    [self setRightBarButton];
     [self judgeIsInvite];
 }
+
+- (void)setRightBarButton {
+    UIImageView *shareImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 21, 20)];
+    shareImageView.image = [UIImage imageNamed:@"fenxiang copy.png"];
+    UITapGestureRecognizer *shareTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(shareAction)];
+    shareImageView.userInteractionEnabled = YES;
+    [shareImageView addGestureRecognizer:shareTap];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareImageView];
+}
+
+- (void)shareAction {
+    NSString *str = [NSString stringWithFormat:@"%@share/rs?id=%@", SHARE_URL, [self.dic objectForKey:@"id"]];
+    // 设置标题
+    NSString *title = [NSString stringWithFormat:@"%@ 正在寻找 %@ 工作，期待您给予面试机会！", [[self.dic objectForKey:@"user"] objectForKey:@"name"], [self.dic objectForKey:@"title"]];
+    
+    if ([WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi]) {
+        NSArray *imageArray = @[[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[self.dic objectForKey:@"user"] objectForKey:@"avatar"]]]]];
+        if (imageArray) {
+            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+            [shareParams SSDKSetupShareParamsByText:[NSString stringWithFormat:@"%@", [self.dic objectForKey:@"self_summary"]]
+                                             images:imageArray
+                                                url:[NSURL URLWithString:str]
+                                              title:title
+                                               type:SSDKContentTypeAuto];
+            //2、分享（可以弹出我们的分享菜单和编辑界面）
+            [ShareSDK showShareActionSheet:nil //要显示菜单的视图, iPad版中此参数作为弹出菜单的参照视图，只有传这个才可以弹出我们的分享菜单，可以传分享的按钮对象或者自己创建小的view 对象，iPhone可以传nil不会影响
+                                     items:nil
+                               shareParams:shareParams
+                       onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                           
+                           switch (state) {
+                               case SSDKResponseStateSuccess: {
+                                   [AVAnalytics event:@"JDShare"];
+                                   [MobClick event:@"JDShare"];
+                                   
+                                   UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"分享成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                                   UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                                   [alertViewController addAction:action];
+                                   [self presentViewController:alertViewController animated:YES completion:nil];
+                                   
+                                   break;
+                               }
+                               case SSDKResponseStateFail: {
+                                   UIAlertController *alertViewController = [UIAlertController alertControllerWithTitle:@"分享失败" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                                   UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+                                   [alertViewController addAction:action];
+                                   [self presentViewController:alertViewController animated:YES completion:nil];
+                                   
+                                   break;
+                               }
+                               default:
+                                   break;
+                           }
+                       }
+             ];}
+    }
+}
+
 - (void)judgeIsInvite
 {
     if ([self.isSelf isEqualToString:@"123"] || self.jdId == nil) {

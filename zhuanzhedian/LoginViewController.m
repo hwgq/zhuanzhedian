@@ -16,7 +16,6 @@
 #import "ChangeIdentityViewController.h"
 #import "AVOSCloud/AVOSCloud.h"
 #import "MBProgressHUD.h"
-#import "InternetRequest.pch"
 #import "FMDBMessages.h"
 #import "AVOSCloud/AVOSCloud.h"
 #import "RCAnimatedImagesView.h"
