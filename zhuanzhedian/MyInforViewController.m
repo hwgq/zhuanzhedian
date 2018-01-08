@@ -474,11 +474,8 @@
         NSString *sign = [NSString stringWithFormat:@"%@||%@||%@",url,[userDic objectForKey:@"token"],time];
         [dic setObject:time forKey:@"timestamp"];
         [dic setObject:[MD5NSString md5HexDigest:sign] forKey:@"sign"];
-        
-        
+    
         [manager POST:url parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-            
-            
             //         上传filename
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             //         设置时间格式
@@ -487,13 +484,7 @@
             NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
             NSURL *url = [NSURL fileURLWithPath:imagePath isDirectory:YES];
             [formData appendPartWithFileURL:url name:@"body" fileName:fileName mimeType:@"image/png" error:nil];
-            
-            
-            
-            
-            
-            
-            
+     
         } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             if ([[responseObject objectForKey:@"ret"]isEqualToString:@"0"]) {
                 NSString *url = [[responseObject objectForKey:@"data"]objectForKey:@"url"];

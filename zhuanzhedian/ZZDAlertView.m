@@ -128,7 +128,7 @@
         
     }else if(alert == ZZDAlertStateLoad){
         self.indicatorView = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width / 2 - 35, [UIScreen mainScreen].bounds.size.height / 3 - 25, 70, 70)];
-        self.indicatorView.color = [UIColor zzdColor];
+        self.indicatorView.color = [UIColor blackColor];//[UIColor zzdColor];
         [self addSubview:self.indicatorView];
         [self.indicatorView startAnimating];
         

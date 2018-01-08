@@ -206,7 +206,6 @@
         
     [manager POST:@"http://api.zzd.hidna.cn/v1/user/login" parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject)
         {
-        
         NSString *str =  [responseObject objectForKey:@"ret"];
 
         if ([str isEqualToString:@"0"]) {

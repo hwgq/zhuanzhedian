@@ -24,6 +24,7 @@
 #import "UIColor+AddColor.h"
 #import "ScanViewController.h"
 #import "JobHelperViewController.h"
+#import "NounResumeController.h"
 
 typedef enum kSliderTag {
     kHeight_Tag             = 11,
@@ -366,6 +367,7 @@ typedef enum kSliderTag {
     CompleteRSViewController *rsVC = [[CompleteRSViewController alloc]init];
     FirstRegistGuideController *firstRegist = [[FirstRegistGuideController alloc]init];
     JobHelperViewController *jobHelperVC = [[JobHelperViewController alloc]init];
+    NounResumeController *nounResumeConroller = [[NounResumeController alloc] init];
     if (indexPath.section == 0) {
         self.navigationController.navigationBar.hidden = NO;
         switch (indexPath.row) {
@@ -386,7 +388,8 @@ typedef enum kSliderTag {
                 [self.navigationController pushViewController:collect animated:YES];
                 break;
             case 2:
-                
+                nounResumeConroller.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:nounResumeConroller animated:YES];
                 break;
             case 3:
                 jobHelperVC.hidesBottomBarWhenPushed = YES;
